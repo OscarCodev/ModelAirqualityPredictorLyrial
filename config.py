@@ -1,13 +1,20 @@
 """
 Configuración del proyecto
 """
+import os
 
-# API Key de OpenWeatherMap
-OPENWEATHER_API_KEY = "7e2e121dba238439a5276c8b5c956fb6"
+# API Key de OpenWeatherMap (usa variable de entorno en Azure)
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY", "7e2e121dba238439a5276c8b5c956fb6")
 
 # Coordenadas de Huamanga, Ayacucho, Perú
 LATITUDE = -13.1631
 LONGITUDE = -74.2236
+
+# Puerto para Azure App Service
+PORT = int(os.getenv('PORT', os.getenv('WEBSITES_PORT', 8000)))
+
+# Detección de entorno Azure
+IS_AZURE = os.getenv('WEBSITE_INSTANCE_ID') is not None
 
 # Rutas de archivos
 DATA_PATH = "data/huamanga_air_quality_2020_2025.csv"
